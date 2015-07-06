@@ -22,23 +22,24 @@ namespace MVC5FirstWeek.Models
         }
     
         public int Id { get; set; }
-        [StringLength(100)]
-        [Required(ErrorMessage="客戶名稱必須輸入！")]
+        [StringLength(50)]
+        [Required(ErrorMessage = "客戶名稱必須填入！")]
         public string 客戶名稱 { get; set; }
         [StringLength(8)]
-        [Required(ErrorMessage = "統一編號必須輸入！")]
+        [Required(ErrorMessage = "統一編號必須填入！")]
         public string 統一編號 { get; set; }
-        [StringLength(100)]
-        [Required(ErrorMessage = "電話必須輸入！")]
+        [StringLength(50)]
+        [Required(ErrorMessage = "電話必須填入！")]
         public string 電話 { get; set; }
-        [StringLength(100)]
+        [StringLength(50)]
         public string 傳真 { get; set; }
-        [StringLength(200)]
+        [StringLength(100)]
         public string 地址 { get; set; }
-        [StringLength(500)]
+        [StringLength(250)]
         [DataType(DataType.EmailAddress)]
         [EmailAddress]
         public string Email { get; set; }
+        public bool 已刪除 { get; set; }
     
         public virtual ICollection<客戶銀行資訊> 客戶銀行資訊 { get; set; }
         public virtual ICollection<客戶聯絡人> 客戶聯絡人 { get; set; }

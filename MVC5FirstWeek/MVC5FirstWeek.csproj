@@ -196,6 +196,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>客戶資料.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\客戶資料1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>客戶資料.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\客戶銀行資訊.cs">
       <DependentUpon>客戶資料.tt</DependentUpon>
     </Compile>
@@ -282,12 +287,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\Index_ORG.cshtml" />
     <Content Include="Views\客戶資料\Create.cshtml" />
     <Content Include="Views\客戶資料\Delete.cshtml" />
     <Content Include="Views\客戶資料\Details.cshtml" />
     <Content Include="Views\客戶資料\Edit.cshtml" />
     <Content Include="Views\客戶資料\Index.cshtml" />
-    <Content Include="Views\Home\Index_ORG.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
