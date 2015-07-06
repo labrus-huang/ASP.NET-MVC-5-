@@ -17,7 +17,10 @@ namespace MVC5FirstWeek.Controllers
         // GET: 客戶資料
         public ActionResult Index()
         {
+            // Modified for do not show when delete flag is ON
+            //return View(db.客戶資料.ToList());
             return View(db.客戶資料.Where(g => g.已刪除 == false).ToList());
+            // end of modify
         }
 
         // GET: 客戶資料/Details/5
@@ -110,7 +113,10 @@ namespace MVC5FirstWeek.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶資料 客戶資料 = db.客戶資料.Find(id);
-            db.客戶資料.Remove(客戶資料);
+            // Modified for Change status but not really remove
+            //db.客戶資料.Remove(客戶資料);
+            客戶資料.已刪除 = true;
+            // end of modify
             db.SaveChanges();
             return RedirectToAction("Index");
         }

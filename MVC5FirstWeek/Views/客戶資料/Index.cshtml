@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MVC5FirstWeek.Models.客戶資料>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "客戶資料";
 }
 
 <h2>Index</h2>
@@ -29,9 +29,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.已刪除)
-        </th>
         <th></th>
     </tr>
 
@@ -54,9 +51,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.已刪除)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

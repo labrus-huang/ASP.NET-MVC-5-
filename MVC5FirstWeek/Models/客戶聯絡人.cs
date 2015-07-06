@@ -11,15 +11,28 @@ namespace MVC5FirstWeek.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class 客戶聯絡人
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "客戶Id必須填入！")]
         public int 客戶Id { get; set; }
+        [StringLength(50)]
+        [Required(ErrorMessage = "職稱必須填入！")]
         public string 職稱 { get; set; }
+        [StringLength(50)]
+        [Required(ErrorMessage = "姓名必須填入！")]
         public string 姓名 { get; set; }
+        [StringLength(250)]
+        [Required(ErrorMessage = "Email必須填入！")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         public string Email { get; set; }
+        [StringLength(50)]
+        [RegularExpression(@"\d{4}-\d{6}", ErrorMessage="格式必須為 9999-999999")]
         public string 手機 { get; set; }
+        [StringLength(50)]
         public string 電話 { get; set; }
         public Nullable<bool> 已刪除 { get; set; }
     
