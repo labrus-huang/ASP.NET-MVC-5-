@@ -11,15 +11,26 @@ namespace MVC5FirstWeek.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class 客戶銀行資訊
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "客戶Id必須填入！")]
         public int 客戶Id { get; set; }
+        [StringLength(50)]
+        [Required(ErrorMessage = "銀行名稱必須填入！")]
         public string 銀行名稱 { get; set; }
+        [Range(UInt32.MinValue, UInt32.MaxValue)]
+        [Required(ErrorMessage = "銀行代碼必須填入！")]
         public int 銀行代碼 { get; set; }
+        [Range(UInt32.MinValue, UInt32.MaxValue)]
         public Nullable<int> 分行代碼 { get; set; }
+        [StringLength(50)]
+        [Required(ErrorMessage = "帳戶名稱必須填入！")]
         public string 帳戶名稱 { get; set; }
+        [StringLength(20)]
+        [Required(ErrorMessage = "帳戶號碼必須填入！")]
         public string 帳戶號碼 { get; set; }
         public Nullable<bool> 已刪除 { get; set; }
     
