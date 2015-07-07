@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MVC5FirstWeek.Models.Report1>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.客戶名稱)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.客戶聯絡人數量)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.客戶銀行資訊數量)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.客戶名稱)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.客戶聯絡人數量)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.客戶銀行資訊數量)
+            </td>
+        </tr>
+    }
+
+</table>
