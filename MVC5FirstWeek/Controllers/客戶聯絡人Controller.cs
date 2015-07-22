@@ -42,7 +42,7 @@ namespace MVC5FirstWeek.Controllers
         // GET: 客戶聯絡人/Create
         public ActionResult Create()
         {
-            ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱");
+            ViewBag.客戶Id = new SelectList(db.客戶資料.Where(c => c.已刪除 == false), "Id", "客戶名稱");
             return View();
         }
 
@@ -73,7 +73,7 @@ namespace MVC5FirstWeek.Controllers
                 // end of modify
             }
 
-            ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱", 客戶聯絡人.客戶Id);
+            ViewBag.客戶Id = new SelectList(db.客戶資料.Where(c => c.已刪除 == false), "Id", "客戶名稱", 客戶聯絡人.客戶Id);
             return View(客戶聯絡人);
         }
 
@@ -89,7 +89,7 @@ namespace MVC5FirstWeek.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱", 客戶聯絡人.客戶Id);
+            ViewBag.客戶Id = new SelectList(db.客戶資料.Where(c => c.已刪除 == false), "Id", "客戶名稱", 客戶聯絡人.客戶Id);
             return View(客戶聯絡人);
         }
 
@@ -102,11 +102,24 @@ namespace MVC5FirstWeek.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(客戶聯絡人).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                // Modified for disallowed duplicate same customer and email
+                //db.Entry(客戶聯絡人).State = EntityState.Modified;
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
+                if (db.客戶聯絡人.Where(g => g.客戶Id == 客戶聯絡人.客戶Id && g.Email == 客戶聯絡人.Email).Count() == 0)
+                {
+                    db.Entry(客戶聯絡人).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    //throw new Exception("同一個客戶下的聯絡人，其 Email 不能重複！");
+                    ModelState.AddModelError("CreateErr", "同一個客戶下的聯絡人，其 Email 不能重複！");
+                }
+                // end of modify
             }
-            ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱", 客戶聯絡人.客戶Id);
+            ViewBag.客戶Id = new SelectList(db.客戶資料.Where(c => c.已刪除 == false), "Id", "客戶名稱", 客戶聯絡人.客戶Id);
             return View(客戶聯絡人);
         }
 
